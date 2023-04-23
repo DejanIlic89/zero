@@ -1,12 +1,23 @@
+import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.qaautomation.config.TestEnvFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class TestSandbox {
+
+    Config CONFIG = TestEnvFactory.getInstance().getConfig();
+
+    @Test
+    void assertThatWeCanGetUserConfig() {
+        log.info(CONFIG.getString("TEST_ENV"));
+        log.info(CONFIG.getString("CREATE_EMPLOYEE_ENDPOINT"));
+        log.info(CONFIG.getString("ADMIN_LOGIN"));
+    }
 
     /**
      * a very basic test
