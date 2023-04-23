@@ -4,7 +4,7 @@ Zero is our feature rich, core test automation framework, that can be used as an
 for any/and all kind of test automation frameworks (such as API, Browser, Mobile App).
 
 ![](https://img.shields.io/github/actions/workflow/status/DejanIlic89/zero/Java%20CI%20with%20Maven?logo=GitHub)
-![](https://img.shields.io/github/license/DejanIlic89/zero)
+![](https://img.shields.io/github/license/DejanIlic89/zero?style=flat)
 
 ### Requiring (one time) manual setup by user
 
