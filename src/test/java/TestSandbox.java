@@ -1,9 +1,11 @@
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 public class TestSandbox {
 
     /**
@@ -31,6 +33,11 @@ public class TestSandbox {
         } else {
             assertTrue(false, "time is odd");
         }
+    }
+
+    @Test
+    void testLogLevels() {
+        log.info("this is info statement");
     }
 
 }
