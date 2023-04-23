@@ -1,11 +1,12 @@
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.qaautomation.annotations.FailingTest;
+import org.qaautomation.annotations.FlakyTest;
+import org.qaautomation.annotations.SmokeTest;
 import org.qaautomation.config.TestEnvFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class TestSandbox {
@@ -14,27 +15,24 @@ public class TestSandbox {
 
     @Test
     void assertThatWeCanGetUserConfig() {
-        log.info(CONFIG.getString("TEST_ENV"));
-        log.info(CONFIG.getString("CREATE_EMPLOYEE_ENDPOINT"));
-        log.info(CONFIG.getString("ADMIN_LOGIN"));
+        assertAll("Config test",
+                () -> assertEquals("DEVELOP", CONFIG.getString("TEST_ENV"), "TEST_ENV"),
+                () -> assertEquals("/employee/create", CONFIG.getString("CREATE_EMPLOYEE_ENDPOINT"), "CREATE_EMPLOYEE_ENPOINT"),
+                () -> assertEquals("develop-admin", CONFIG.getString("ADMIN_LOGIN"), "ADMIN_LOGIN")
+        );
     }
 
-    /**
-     * a very basic test
-     */
-    @Test
+    @SmokeTest
     void assertThatTrueIsTrue() {
         assertTrue(true, "true is true");
     }
 
-    @Tag("failing")
-    @Test
+    @FailingTest
     void assertThatADayIsADay() {
         assertEquals("day", "night", "true is true");
     }
 
-    @Tag("flaky")
-    @Test
+    @FlakyTest
     void createAFlakyTestCase() {
         long currentTimeStamp = System.currentTimeMillis();
         // TODO: Remove this line with a logging statement
@@ -44,11 +42,6 @@ public class TestSandbox {
         } else {
             assertTrue(false, "time is odd");
         }
-    }
-
-    @Test
-    void testLogLevels() {
-        log.info("this is info statement");
     }
 
 }
