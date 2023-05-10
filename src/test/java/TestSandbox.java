@@ -1,6 +1,6 @@
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import org.qaautomation.annotations.FailingTest;
 import org.qaautomation.annotations.FlakyTest;
 import org.qaautomation.annotations.SmokeTest;
@@ -13,7 +13,7 @@ public class TestSandbox {
 
     Config CONFIG = TestEnvFactory.getInstance().getConfig();
 
-    @Test
+    @RepeatedTest(10)
     void assertThatWeCanGetUserConfig() {
         assertAll("Config test",
                 () -> assertEquals("DEVELOP", CONFIG.getString("TEST_ENV"), "TEST_ENV"),
