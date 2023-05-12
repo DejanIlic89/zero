@@ -1,0 +1,12 @@
+name: run-tests-on-merge-to-main
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  call-tests-on-merge-to-main:
+    uses: ./.github/workflows/run-tests-template.yml
+    with:
+      tags-of-tests-to-include: ""
+    secrets: inherit
