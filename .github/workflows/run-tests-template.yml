@@ -10,21 +10,9 @@ on:
         required: false
         type: string
         default: "flaky,failing"
-#    secrets:
-#      token:
-#        required: true
-
-#jobs:
-#  triage:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/labeler@v4
-#        with:
-#          repo-token: ${{ secrets.token }}
-#          configuration-path: ${{ inputs.config-path }}
 
 jobs:
-  build:
+  run-tests:
 
     runs-on: ubuntu-latest
 
