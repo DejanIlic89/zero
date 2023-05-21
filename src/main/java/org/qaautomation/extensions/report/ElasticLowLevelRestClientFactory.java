@@ -22,6 +22,8 @@ public class ElasticLowLevelRestClientFactory {
         switch (ELASTIC_SERVER) {
             case ON_CLOUD:
                 return getRestClientForCloud();
+            case ON_CLOUD_NGROK:
+                return getRestClientForCloudLocalHostNgRok();
             case ON_LOCALHOST_SECURE:
                 return getRestClientForLocalhostHTTPS();
             case ON_LOCALHOST_INSECURE:
@@ -32,6 +34,20 @@ public class ElasticLowLevelRestClientFactory {
                                 "%s is not a valid HOST choice. Pick your HOST from %s.",
                                 ELASTIC_SERVER, java.util.Arrays.asList(ElasticServerChoices.values())));
         }
+    }
+
+    private static RestClient getRestClientForCloudLocalHostNgRok() {
+        final String ELASTIC_HOST = CONFIG.getString("ON_CLOUD_NGROK.ELASTIC_HOST");
+
+        Header[] headers =
+                new Header[] {
+                        new BasicHeader("Accept", "application/json")
+                };
+
+        // tag::create-secure-client-fingerprint
+        return RestClient.builder(new HttpHost(ELASTIC_HOST)) // <3>
+                .setDefaultHeaders(headers)
+                .build();
     }
 
     private static RestClient getRestClientForCloud() {
