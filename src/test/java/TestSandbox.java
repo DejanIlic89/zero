@@ -5,11 +5,12 @@ import org.qaautomation.annotations.FailingTest;
 import org.qaautomation.annotations.FlakyTest;
 import org.qaautomation.annotations.SmokeTest;
 import org.qaautomation.config.TestEnvFactory;
+import setup.TestSetup;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
-public class TestSandbox {
+public class TestSandbox extends TestSetup {
 
     Config CONFIG = TestEnvFactory.getInstance().getConfig();
 
@@ -35,8 +36,7 @@ public class TestSandbox {
     @FlakyTest
     void createAFlakyTestCase() {
         long currentTimeStamp = System.currentTimeMillis();
-        // TODO: Remove this line with a logging statement
-        System.out.println(currentTimeStamp);
+        log.debug("currentTimeStamp: {}", currentTimeStamp);
         if (currentTimeStamp % 2 == 0) {
             assertTrue(true, "time is even");
         } else {
