@@ -38,7 +38,6 @@ public class ElasticLowLevelRestClientFactory {
 
     private static RestClient getRestClientForCloudLocalHostNgRok() {
         final String ELASTIC_HOST = CONFIG.getString("ON_CLOUD_NGROK.ELASTIC_HOST");
-        final int ELASTIC_PORT = CONFIG.getInt("ON_CLOUD_NGROK.ELASTIC_PORT");
 
         Header[] headers =
                 new Header[] {
@@ -46,7 +45,7 @@ public class ElasticLowLevelRestClientFactory {
                 };
 
         // tag::create-secure-client-fingerprint
-        return RestClient.builder(new HttpHost(ELASTIC_HOST, ELASTIC_PORT, "http")) // <3>
+        return RestClient.builder(new HttpHost(ELASTIC_HOST)) // <3>
                 .setDefaultHeaders(headers)
                 .build();
     }
