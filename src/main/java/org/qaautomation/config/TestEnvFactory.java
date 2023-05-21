@@ -63,19 +63,4 @@ public class TestEnvFactory {
         }
     }
 
-//    private void setConfig() {
-//        log.info("setConfig called");
-//        // Standard config load behaviour: https://github.com/lightbend/config#standard-behavior
-//        config = ConfigFactory.load();
-//        TestEnv testEnv = config.getEnum(TestEnv.class, "TEST_ENV");
-//        String testEnvName = testEnv.toString().toLowerCase();
-//        String testEnvDirPath = String.format("src/main/resources/%s", testEnvName);
-//        log.info("path: {}", testEnvDirPath);
-//        File testEnvDir = new File(testEnvDirPath);
-//        for (File file : testEnvDir.listFiles()) {
-//            Config childConfig = ConfigFactory.load(String.format("%s/%s", testEnvName, file.getName()));
-//            config = config.withFallback(childConfig);
-//        }
-//    }
-
 }
